@@ -3,7 +3,7 @@
 </div>
 
 # 여름이었다ㅋ
-> **여름이었다ㅋ 바로가기 :** [https://summer-it-was-z.netlify.app](https://summer-it-was-z.netlify.app)
+> **여름이었다ㅋ 바로가기 :** 
 <br>
 
 ## 💻 프로젝트 소개
