@@ -1,19 +1,14 @@
 import styled from "styled-components";
-import ButtonS from "../components/ButtonS";
 import { ReactComponent as Letter1 } from "../assets/images/Letter1.svg";
 import { ReactComponent as Letter2 } from "../assets/images/Letter2.svg";
 import { ReactComponent as Letter3 } from "../assets/images/Letter3.svg";
 import { ReactComponent as Letter4 } from "../assets/images/Letter4.svg";
-import ImgBtn from "../assets/images/ImgBtn.png";
-import LinkBtn from "../assets/images/LinkBtn.png";
-import KakaoBtn from "../assets/images/KakaoBtn.png";
 
-const Result = () => {
+const Detail = () => {
   var letter = 1;
 
   return (
     <Container>
-      <h2>일기 작성 완료!</h2>
       <LetterWrap>
         <LetterContent>
           <div
@@ -56,36 +51,17 @@ const Result = () => {
           <Letter4 />
         )}
       </LetterWrap>
-      <ButtonWrap>
-        <ButtonS image={ImgBtn} text="이미지 저장" />
-        <ButtonS image={LinkBtn} text="링크 복사" />
-        <ButtonS image={KakaoBtn} text="공유하기" />
-      </ButtonWrap>
     </Container>
   );
 };
 
-export default Result;
+export default Detail;
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
   margin: 12px 0;
-
-  > h2 {
-    font-family: "S-CoreDream-5Medium";
-    font-weight: 500;
-    font-size: 14px;
-    color: #000000;
-    padding-bottom: 12px;
-  }
-`;
-
-const ButtonWrap = styled.div`
-  display: flex;
-  margin-top: 18px;
-  gap: 6.5px;
 `;
 
 const LetterWrap = styled.div`

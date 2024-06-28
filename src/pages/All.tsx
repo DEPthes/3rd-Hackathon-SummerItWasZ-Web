@@ -1,39 +1,51 @@
 import styled from "styled-components";
 import { ReactComponent as BubbleImg } from "../assets/images/BubbleImg.svg";
+import { useNavigate } from "react-router-dom";
 
 const All = () => {
+  const navigate = useNavigate();
   const list = [
     {
+      id: 1,
       title: "제목제목제목제목제목제목제목제목제목제목제목제목목",
       content:
         "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
     },
     {
+      id: 2,
       title: "제목제목제목제목제목제목제목제목제목제목제목제목목",
       content:
         "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
     },
     {
+      id: 3,
       title: "제목제목제목제목제목제목제목제목제목제목제목제목목",
       content:
         "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
     },
     {
+      id: 4,
       title: "제목제목제목제목제목제목제목제목제목제목제목제목목",
       content:
         "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
     },
     {
+      id: 5,
       title: "제목제목제목제목제목제목제목제목제목제목제목제목목",
       content:
         "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
     },
     {
+      id: 6,
       title: "제목제목제목제목제목제목제목제목제목제목제목제목목",
       content:
         "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
     },
-    { title: "제목 3", content: "본문 3" },
+    {
+      id: 7,
+      title: "제목 3",
+      content: "본문 3",
+    },
   ];
   return (
     <Container>
@@ -43,8 +55,8 @@ const All = () => {
         <br />
         각자의 여름을 공유하고 웃어봐요!
       </p>
-      {list.map((data, index) => (
-        <ListWrap key={index}>
+      {list.map((data) => (
+        <ListWrap key={data.id} onClick={() => navigate(`/all/${data.id}`)}>
           <h1>{data.title}</h1>
           <ContentDiv>
             <p>{data.content}</p>
@@ -66,6 +78,7 @@ const Container = styled.div`
 
   > h2 {
     font-family: "S-CoreDream-5Medium";
+    font-weight: 500;
     font-size: 14px;
     color: #000000;
     padding-bottom: 12px;
@@ -74,6 +87,7 @@ const Container = styled.div`
   > p {
     text-align: center;
     font-family: "S-CoreDream-3Light";
+    font-weight: 300;
     font-size: 12px;
     color: #000000;
     padding-bottom: 24px;
@@ -85,13 +99,15 @@ const ListWrap = styled.div`
   width: 358px;
   height: 97.18px;
   margin-bottom: 9px;
+  cursor: pointer;
 
   background: #ffffff;
   border: 0.8px solid #000000;
   border-radius: 3px;
 
   > h1 {
-    font-family: "S-CoreDream-6Boldh";
+    font-family: "S-CoreDream-6Bold";
+    font-weight: 600;
     font-size: 14px;
     color: #000000;
     width: 306px;
@@ -114,6 +130,7 @@ const ContentDiv = styled.div`
 
   > p {
     font-family: "S-CoreDream-3Light";
+    font-weight: 300;
     font-size: 12px;
     color: #000000;
     width: 242px;

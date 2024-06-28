@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AppContainer } from "./App.style";
 import Main from "./pages/Main";
-import Write from "./pages/Write";
+import Writes from "./pages/Writes";
 import All from "./pages/All";
 import Header from "./components/Header";
 import Result from "./pages/Result";
+import Detail from "./pages/Detail";
 
 const App = () => {
   return (
@@ -13,8 +14,9 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/write" element={<Write />} />
+          <Route path="/write" element={<Writes />} />
           <Route path="/all" element={<All />} />
+          <Route path="/all/:id" element={<Detail />} />
           <Route path="/result" element={<Result />} />
         </Routes>
       </BrowserRouter>

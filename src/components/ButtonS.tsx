@@ -50,6 +50,7 @@ const ImgText = styled.div`
 const Text = styled.div`
   text-align: center;
   font-family: "S-CoreDream-5Medium";
+  font-weight: 500;
   font-size: 16px;
   color: #000000;
 `;
