@@ -16,8 +16,8 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/write" element={<Writes />} />
           <Route path="/all" element={<All />} />
-          <Route path="/all/:id" element={<Detail />} />
-          <Route path="/result" element={<Result />} />
+          <Route path="/all/:id/:code" element={<Detail />} />
+          <Route path="/result/:id/:code" element={<Result />} />
         </Routes>
       </BrowserRouter>
     </AppContainer>

@@ -1,10 +1,12 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import ButtonM from "../../components/ButtonM";
 import { useEffect, useState } from "react";
 import { ReactComponent as CheckedImg } from "../../assets/images/CheckImg.svg";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { pageState, resultState } from "../../assets/recoil/recoil";
+import Loading from "../../assets/images/Loading.png";
+import axios from "axios";
 
 const Write = () => {
   const setPage = useSetRecoilState(pageState);
@@ -14,6 +16,7 @@ const Write = () => {
   const [content, setContent] = useState("");
   const [date, setDate] = useState("");
   const [checked, setChecked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const MAX_LENGTH_NICKNAME = 10; //닉네임 글자수 제한
   const MAX_LENGTH_TITLE = 40; //제목 글자수 제한
   const MAX_LENGTH_CONTENT = 300; //내용 글자수 제한
@@ -61,8 +64,44 @@ const Write = () => {
     setContent(target);
   };
 
+  const changeGpt = () => {
+    setIsLoading(true);
+    const formData = new FormData();
+    formData.append("content", content);
+
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/diary/changeGpt`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        setPage(1);
+        setResult({
+          ...result,
+          nickname: nickname,
+          title: title,
+          date: date,
+          checked: checked,
+          content: content,
+          changegpt: res.data,
+        });
+      })
+      .catch((error) => {
+        console.error("Error message:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   return (
     <Container>
+      {isLoading && (
+        <Overlay>
+          <Spinner src={Loading} alt="Loading..." className="spinner" />
+        </Overlay>
+      )}
       <h2>여름 작성하기</h2>
       <input
         className="nickname"
@@ -114,17 +153,7 @@ const Write = () => {
         <ButtonM
           text="다음"
           disabled={title === "" || content === "" || nickname === ""}
-          onClick={() => {
-            setPage(1);
-            setResult({
-              ...result,
-              nickname: nickname,
-              title: title,
-              date: date,
-              checked: checked,
-              content: content,
-            });
-          }}
+          onClick={changeGpt}
         />
       </ButtonWrap>
     </Container>
@@ -267,4 +296,32 @@ const CheckBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Spinner = styled.img`
+  width: 80px;
+  height: 80px;
+  animation: ${spin} 1s linear infinite;
 `;

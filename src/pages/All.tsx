@@ -1,52 +1,62 @@
 import styled from "styled-components";
 import { ReactComponent as BubbleImg } from "../assets/images/BubbleImg.svg";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+type Result = {
+  id: number;
+  title: string;
+  content: string;
+  code: string;
+};
 
 const All = () => {
   const navigate = useNavigate();
-  const list = [
-    {
-      id: 1,
-      title: "제목제목제목제목제목제목제목제목제목제목제목제목목",
-      content:
-        "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
-    },
-    {
-      id: 2,
-      title: "제목제목제목제목제목제목제목제목제목제목제목제목목",
-      content:
-        "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
-    },
-    {
-      id: 3,
-      title: "제목제목제목제목제목제목제목제목제목제목제목제목목",
-      content:
-        "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
-    },
-    {
-      id: 4,
-      title: "제목제목제목제목제목제목제목제목제목제목제목제목목",
-      content:
-        "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
-    },
-    {
-      id: 5,
-      title: "제목제목제목제목제목제목제목제목제목제목제목제목목",
-      content:
-        "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
-    },
-    {
-      id: 6,
-      title: "제목제목제목제목제목제목제목제목제목제목제목제목목",
-      content:
-        "본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문본문",
-    },
-    {
-      id: 7,
-      title: "제목 3",
-      content: "본문 3",
-    },
-  ];
+  const [result, setResult] = useState<Result[]>([]);
+
+  useEffect(() => {
+    retrieveAllData();
+  }, []);
+
+  const retrieveAllData = () => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/diary/retrieveAll`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setResult(res.data.information);
+      })
+      .catch((error) => {
+        console.error("Error message:", error);
+      });
+  };
+
+  const resultData = ({ id, code }: { id: number; code: string }) => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/diary/${id}/${code}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate(`/all/${id}/${code}`, {
+          state: {
+            id: id,
+            code: code,
+            data: res.data.information,
+          },
+        });
+      })
+      .catch((error) => {
+        console.error("Error message:", error);
+      });
+  };
+
   return (
     <Container>
       <h2>모두의 여름</h2>
@@ -55,8 +65,16 @@ const All = () => {
         <br />
         각자의 여름을 공유하고 웃어봐요!
       </p>
-      {list.map((data) => (
-        <ListWrap key={data.id} onClick={() => navigate(`/all/${data.id}`)}>
+      {result.map((data) => (
+        <ListWrap
+          key={data.id}
+          onClick={() => {
+            resultData({
+              id: data.id,
+              code: data.code,
+            });
+          }}
+        >
           <h1>{data.title}</h1>
           <ContentDiv>
             <p>{data.content}</p>

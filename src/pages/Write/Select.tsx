@@ -10,14 +10,74 @@ import { ReactComponent as RightArrow } from "../../assets/images/RightArrow.svg
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { pageState, resultState } from "../../assets/recoil/recoil";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Select = () => {
   const navigate = useNavigate();
   const setPage = useSetRecoilState(pageState);
   const [result, setResult] = useRecoilState(resultState);
-  const chatgpt = "받아온 데이터";
-
   const [letter, setLetter] = useState(1);
+
+  const resultData = ({ id, code }: { id: number; code: string }) => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/diary/${id}/${code}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate(`/result/${id}/${code}`, {
+          state: {
+            id: id,
+            code: code,
+            data: res.data.information,
+          },
+        });
+        setResult({
+          nickname: "",
+          title: "",
+          date: "",
+          checked: false,
+          content: "",
+          changegpt: "",
+        });
+        setPage(0);
+      })
+      .catch((error) => {
+        console.error("Error message:", error);
+      });
+  };
+
+  const writeDiary = () => {
+    axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/diary`,
+        {
+          nickname: result.nickname,
+          title: result.title,
+          diaryDate: result.date,
+          access: result.checked,
+          content: result.changegpt,
+          diaryFrame: letter,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        resultData({
+          id: res.data.information.id,
+          code: res.data.information.code,
+        });
+      })
+      .catch((error) => {
+        console.error("Error message:", error);
+      });
+  };
 
   return (
     <Container>
@@ -61,7 +121,7 @@ const Select = () => {
               textAlign: letter === 2 || letter === 3 ? "right" : undefined,
             }}
           >
-            {chatgpt}
+            {result.changegpt}
           </div>
         </LetterContent>
         {letter === 1 ? (
@@ -76,21 +136,7 @@ const Select = () => {
       </LetterWrap>
       <ButtonWrap>
         <ButtonM text="이전" onClick={() => setPage(0)} />
-        <ButtonM
-          text="작성 완료"
-          onClick={() => {
-            //서버에 데이터 보내고 성공하면 아래 실행
-            navigate(`/result`);
-            setResult({
-              nickname: "",
-              title: "",
-              date: "",
-              checked: false,
-              content: "",
-            });
-            setPage(0);
-          }}
-        />
+        <ButtonM text="작성 완료" onClick={writeDiary} />
       </ButtonWrap>
     </Container>
   );

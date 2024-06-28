@@ -11,6 +11,7 @@ export type Result = {
   date: string;
   checked: boolean;
   content: string;
+  changegpt: string;
 };
 
 export const resultState = atom<Result>({
@@ -21,5 +22,6 @@ export const resultState = atom<Result>({
     date: "",
     checked: false,
     content: "",
+    changegpt: "",
   },
 });
