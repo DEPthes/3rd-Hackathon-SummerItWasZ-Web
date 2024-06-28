@@ -13,7 +13,7 @@ const Header = () => {
           className={({ isActive }) => (isActive ? "active" : "")}
           to="/write"
         >
-          여름쓰기
+          여름 쓰기
         </NavLinks>
         <NavLinks
           className={({ isActive }) => (isActive ? "active" : "")}
@@ -36,8 +36,8 @@ const Container = styled.div`
 
 const NavLinks = styled(NavLink)`
   color: #000000;
-  font-family: "S-CoreDream-5Medium";
-  font-weight: 500;
+  font-family: "S-CoreDream-6Bold";
+  font-weight: 600;
   font-size: 14px;
   line-height: 150%;
   text-decoration: none;

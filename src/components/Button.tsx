@@ -26,7 +26,7 @@ const Container = styled.button`
   border: none;
 
   .icon {
-    fill: #ffffff;
+    fill: #f0f8ff;
     stroke: #000000;
   }
 
