@@ -26,7 +26,6 @@ const Select = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         navigate(`/result/${id}/${code}`, {
           state: {
             id: id,
@@ -68,7 +67,6 @@ const Select = () => {
         }
       )
       .then((res) => {
-        console.log(res.data);
         resultData({
           id: res.data.information.id,
           code: res.data.information.code,
@@ -225,5 +223,6 @@ const LetterContent = styled.div`
     font-family: S-CoreDream-4Regular;
     font-size: 12px;
     color: #000000;
+    white-space: pre-line;
   }
 `;

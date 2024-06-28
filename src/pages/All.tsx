@@ -27,7 +27,6 @@ const All = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setResult(res.data.information);
       })
       .catch((error) => {
@@ -43,7 +42,6 @@ const All = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         navigate(`/all/${id}/${code}`, {
           state: {
             id: id,
