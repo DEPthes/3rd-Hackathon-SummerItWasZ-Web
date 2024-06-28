@@ -1,12 +1,11 @@
-import styled from "styled-components";
+import Select from "./Write/Select";
 
 const Write = () => {
-  return <Container>Write</Container>;
+  return (
+    <>
+      <Select />
+    </>
+  );
 };
 
 export default Write;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
