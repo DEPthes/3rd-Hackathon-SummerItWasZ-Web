@@ -1,41 +1,19 @@
 import styled from "styled-components";
-import ButtonM from "../../components/ButtonM";
-import { useState } from "react";
-import { ReactComponent as Letter1 } from "../../assets/images/Letter1.svg";
-import { ReactComponent as Letter2 } from "../../assets/images/Letter2.svg";
-import { ReactComponent as Letter3 } from "../../assets/images/Letter3.svg";
-import { ReactComponent as Letter4 } from "../../assets/images/Letter4.svg";
-import { ReactComponent as LeftArrow } from "../../assets/images/LeftArrow.svg";
-import { ReactComponent as RightArrow } from "../../assets/images/RightArrow.svg";
+import ButtonS from "../components/ButtonS";
+import { ReactComponent as Letter1 } from "../assets/images/Letter1.svg";
+import { ReactComponent as Letter2 } from "../assets/images/Letter2.svg";
+import { ReactComponent as Letter3 } from "../assets/images/Letter3.svg";
+import { ReactComponent as Letter4 } from "../assets/images/Letter4.svg";
+import ImgBtn from "../assets/images/ImgBtn.png";
+import LinkBtn from "../assets/images/LinkBtn.png";
+import KakaoBtn from "../assets/images/KakaoBtn.png";
 
-const Select = () => {
-  const [letter, setLetter] = useState(1);
+const Result = () => {
+  var letter = 1;
 
   return (
     <Container>
-      <h2>일기장을 선택하세요.</h2>
-      <SelectWrap>
-        <LeftArrow
-          onClick={() => {
-            if (letter > 1) {
-              setLetter(letter - 1);
-            }
-          }}
-        />
-        <CircleWrap>
-          <Circle $select={letter === 1}></Circle>
-          <Circle $select={letter === 2}></Circle>
-          <Circle $select={letter === 3}></Circle>
-          <Circle $select={letter === 4}></Circle>
-        </CircleWrap>
-        <RightArrow
-          onClick={() => {
-            if (letter < 4) {
-              setLetter(letter + 1);
-            }
-          }}
-        />
-      </SelectWrap>
+      <h2>일기 작성 완료!</h2>
       <LetterWrap>
         <LetterContent>
           <div
@@ -79,14 +57,15 @@ const Select = () => {
         )}
       </LetterWrap>
       <ButtonWrap>
-        <ButtonM text="이전" />
-        <ButtonM text="작성 완료" />
+        <ButtonS image={ImgBtn} text="이미지 저장" />
+        <ButtonS image={LinkBtn} text="링크 복사" />
+        <ButtonS image={KakaoBtn} text="공유하기" />
       </ButtonWrap>
     </Container>
   );
 };
 
-export default Select;
+export default Result;
 
 const Container = styled.div`
   display: flex;
@@ -105,26 +84,7 @@ const Container = styled.div`
 const ButtonWrap = styled.div`
   display: flex;
   margin-top: 18px;
-  gap: 16px;
-`;
-
-const SelectWrap = styled.div`
-  display: flex;
-  gap: 100px;
-  padding: 7px;
-`;
-
-const CircleWrap = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4.87px;
-`;
-
-const Circle = styled.div<{ $select: boolean }>`
-  width: 5.56px;
-  height: 5.56px;
-  border-radius: 100%;
-  background-color: ${(props) => (props.$select ? "#0085FF" : "#b4d4f1")};
+  gap: 6.5px;
 `;
 
 const LetterWrap = styled.div`

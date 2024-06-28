@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Button from "../components/Button";
+import ButtonM from "../components/ButtonM";
 
 const Main = () => {
   return (
     <Container>
       <div>
-        <Button text="이전" />
+        <ButtonM text="이전" />
       </div>
     </Container>
   );

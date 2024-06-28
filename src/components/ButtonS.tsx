@@ -1,20 +1,24 @@
 import styled from "styled-components";
-import { ReactComponent as ButtonImg } from "../assets/images/ButtonImg.svg";
+import { ReactComponent as ButtonSImg } from "../assets/images/ButtonS.svg";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  image: string;
   text: string;
 }
 
-const Button = ({ text, ...props }: Props) => {
+const ButtonS = ({ image, text, ...props }: Props) => {
   return (
     <Container {...props}>
-      <Text>{text}</Text>
-      <ButtonImg className="icon" />
+      <ImgText>
+        <img src={image} alt={text} />
+        <Text>{text}</Text>
+      </ImgText>
+      <ButtonSImg className="icon" />
     </Container>
   );
 };
 
-export default Button;
+export default ButtonS;
 
 const Container = styled.button`
   position: relative;
@@ -24,6 +28,7 @@ const Container = styled.button`
   background-color: transparent;
   outline: none;
   border: none;
+  padding: 0;
 
   .icon {
     fill: #f0f8ff;
@@ -36,8 +41,13 @@ const Container = styled.button`
   }
 `;
 
-const Text = styled.div`
+const ImgText = styled.div`
+  display: flex;
+  align-items: center;
   position: absolute;
+`;
+
+const Text = styled.div`
   text-align: center;
   font-family: "S-CoreDream-5Medium";
   font-size: 16px;
