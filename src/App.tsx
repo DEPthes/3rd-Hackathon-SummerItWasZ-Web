@@ -1,11 +1,22 @@
-import React from "react";
-import StartPage from "./page/StartPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AppContainer } from "./App.style";
+import Main from "./pages/Main";
+import Write from "./pages/Write";
+import All from "./pages/All";
+import Header from "./components/Header";
 
 const App = () => {
   return (
-    <div>
-      <StartPage />
-    </div>
+    <AppContainer>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/write" element={<Write />} />
+          <Route path="/all" element={<All />} />
+        </Routes>
+      </BrowserRouter>
+    </AppContainer>
   );
 };
 

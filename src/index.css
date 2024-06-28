@@ -82,8 +82,24 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font: GmarketSansMedium;
+  font: S-CoreDream-5Medium;
   vertical-align: baseline;
+}
+
+@font-face {
+  font-family: "DungGeunMo";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "S-CoreDream-5Medium";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
@@ -94,7 +110,7 @@ body {
   margin: 0;
   padding: 0;
   background: #fff;
-  font-family: "GmarketSansMedium";
+  font-family: "S-CoreDream-5Medium";
   font-weight: 400;
   font-size: 100%;
 }
@@ -110,11 +126,11 @@ button {
 }
 
 ::-webkit-scrollbar {
-  width: 11px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f1cfd5;
+  background: #ffffff;
   border-radius: 100px;
 }
 
