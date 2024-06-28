@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import ButtonS from "../components/ButtonS";
 import { ReactComponent as Letter1 } from "../assets/images/Letter1.svg";
 import { ReactComponent as Letter2 } from "../assets/images/Letter2.svg";
 import { ReactComponent as Letter3 } from "../assets/images/Letter3.svg";
 import { ReactComponent as Letter4 } from "../assets/images/Letter4.svg";
-import ImgBtn from "../assets/images/ImgBtn.png";
-import LinkBtn from "../assets/images/LinkBtn.png";
-import KakaoBtn from "../assets/images/KakaoBtn.png";
 import { useLocation } from "react-router-dom";
+import ShareImgBtn from "../components/shareSNS/ShareImgBtn";
+import ShareLinkBtn from "../components/shareSNS/ShareLinkBtn";
+import ShareKakaoBtn from "../components/shareSNS/ShareKakaoBtn";
 
 const Result = () => {
   const location = useLocation();
@@ -15,7 +14,7 @@ const Result = () => {
   return (
     <Container>
       <h2>일기 작성 완료!</h2>
-      <LetterWrap>
+      <LetterWrap id="image">
         <LetterContent>
           <div
             className="title"
@@ -54,9 +53,13 @@ const Result = () => {
         )}
       </LetterWrap>
       <ButtonWrap>
-        <ButtonS image={ImgBtn} text="이미지 저장" />
-        <ButtonS image={LinkBtn} text="링크 복사" />
-        <ButtonS image={KakaoBtn} text="공유하기" />
+        <ShareImgBtn />
+        <ShareLinkBtn
+          link={"https://summer-it-was-z.netlify.app" + location.pathname}
+        />
+        <ShareKakaoBtn
+          link={"https://summer-it-was-z.netlify.app" + location.pathname}
+        />
       </ButtonWrap>
     </Container>
   );
