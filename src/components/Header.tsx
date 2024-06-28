@@ -1,23 +1,33 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/images/Logo.svg";
+import { useSetRecoilState } from "recoil";
+import { pageState } from "../assets/recoil/recoil";
 
 const Header = () => {
+  const setPage = useSetRecoilState(pageState);
+
   return (
     <Container>
-      <NavLinks className={({ isActive }) => (isActive ? "active" : "")} to="/">
+      <NavLinks
+        className={({ isActive }) => (isActive ? "active" : "")}
+        to="/"
+        onClick={() => setPage(0)}
+      >
         <Logo />
       </NavLinks>
       <RightNav>
         <NavLinks
           className={({ isActive }) => (isActive ? "active" : "")}
           to="/write"
+          onClick={() => setPage(0)}
         >
           여름 쓰기
         </NavLinks>
         <NavLinks
           className={({ isActive }) => (isActive ? "active" : "")}
           to="/all"
+          onClick={() => setPage(0)}
         >
           모두의 여름
         </NavLinks>
