@@ -1,13 +1,9 @@
-<div align="center">
-
-</div>
-
 # 여름이었다ㅋ
 > **여름이었다ㅋ 바로가기 :** [https://summer-it-was-z.netlify.app](https://summer-it-was-z.netlify.app)
 <br>
 
 ## 💻 프로젝트 소개
-> **여름이었다ㅋ**
+> **부정적인 경험을 긍정적으로 재해석해주는 서비스**
 <br>
 
 ## ⏳ 개발 기간
@@ -37,4 +33,5 @@
 <br>
 
 ## 🖱 동작 화면
+https://github.com/DEPthes/3rd-Hackathon-SummerItWasZ-Web/assets/72345074/8d848d07-b6f1-41d4-a594-06573741dbb9
 
